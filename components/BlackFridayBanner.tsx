@@ -2,7 +2,7 @@ import { COUPON_CODES } from "@/sanity/lib/sals/CouponCodes";
 import { getActiveSaleByCouponCode } from "@/sanity/lib/sals/getActiveSaleByCouponCode";
 export default async function BlackFridayBanner() {
   const sale = await getActiveSaleByCouponCode(COUPON_CODES.BFRIDAY);
-  console.log(sale);
+
   return (
     <div className="bg-black text-white py-4">
       <div className="container mx-auto px-4">

@@ -1,6 +1,7 @@
 import { getProductBySlug } from "@/sanity/lib/products/getProductBySlug";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
+import AddToBasketButton from "@/components/AddToBasketButton";
 
 export default async function Page({
   params,
@@ -10,7 +11,6 @@ export default async function Page({
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   const description = await product.description;
-  console.log(product);
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -34,12 +34,7 @@ export default async function Page({
               Stock: {product.stock} units
             </span>
           </div>
-          <button
-            disabled={product.stock === 0}
-            className="bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors disabled:bg-red-300 disabled:cursor-not-allowed"
-          >
-            {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
-          </button>
+          <AddToBasketButton product={product} />
         </div>
       </div>
     </div>

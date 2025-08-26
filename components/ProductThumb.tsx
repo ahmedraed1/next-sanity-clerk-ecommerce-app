@@ -12,7 +12,6 @@ export default function ProductThumb({
     stock: number;
   };
 }) {
-  console.log(product);
   return product.stock > 0 ? (
     <Link href={`/product/${product.slug.current}`}>
       <div className="group cursor-pointer">

@@ -12,11 +12,13 @@ import Form from "next/form";
 import { PackageIcon, TrolleyIcon } from "@sanity/icons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import useBasketStore from "@/store/store";
 
 export default function Header() {
   const { user } = useUser();
 
   const [query, setQuery] = useState("");
+  const { getTotalItems } = useBasketStore();
 
   const router = useRouter();
 
@@ -40,7 +42,7 @@ export default function Header() {
                 name="query"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full px-4 py-2 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-200 shadow-sm"
+                className="w-full px-4 py-2 border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-200 shadow-sm"
                 placeholder="Search for products..."
               />
               <button
@@ -59,10 +61,14 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <Link
               href="/basket"
-              className="flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-white rounded-full hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+              className="flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-white  hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 relative"
             >
               <TrolleyIcon className="w-5 h-5" />
               <span className="hidden sm:inline">My Basket</span>
+
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {getTotalItems() || 0}
+              </span>
             </Link>
 
             <ClerkLoaded>
@@ -70,7 +76,7 @@ export default function Header() {
                 <>
                   <Link
                     href="/orders"
-                    className="flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-purple-600 px-4 py-2 text-white rounded-full hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+                    className="flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-purple-600 px-4 py-2 text-white  hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
                   >
                     <PackageIcon className="w-5 h-5" />
                     <span className="hidden sm:inline">Orders</span>
