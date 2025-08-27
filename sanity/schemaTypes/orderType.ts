@@ -80,7 +80,7 @@ export const orderType = defineType({
                         const { product, image, quantity, price, currency } = selection;
                         return {
                             title: `${product} x ${quantity}`,
-                            subtitle: `Quantity: ${quantity} | Price: ${price * quantity} ${currency}`,
+                            subtitle: `Quantity: ${quantity} | Price: ${price * quantity}`,
                             media: image,
                         };
                     },

@@ -5,6 +5,7 @@ import stripe from "@/lib/stripe";
 import { urlFor } from "@/sanity/lib/image";
 
 export type Metadata = {
+    id: string;
     orderNumber: string;
     customerEmail: string;
     customerName: string;
